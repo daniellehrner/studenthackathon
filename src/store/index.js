@@ -39,11 +39,12 @@ export default new Vuex.Store({
     ]
   },
   getters: {
-    questions: state => state.questions
+    questions: state => state.questions,
+    numCorrectAnswers: state => state.questions.filter(q => q.answer != null).filter(q => q.answers[q.answer].correct).length,
+    numIncorrectAnswers: state => state.questions.filter(q => q.answer != null).filter(q => !q.answers[q.answer].correct).length
   },
   mutations: {
     answer (state, answer) {
-      console.log('store', answer)
       state.questions[answer.questionIndex].answer = answer.answer
     }
   }

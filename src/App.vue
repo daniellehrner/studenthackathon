@@ -5,7 +5,7 @@
         <span class="icon"><i class="fas fa-question-circle"></i></span>
         Questions
       </router-link>
-      <router-link class="link" :to="{ name: 'Main' }">
+      <router-link class="link" :to="{ name: 'Stats' }">
         <span class="icon"><i class="fas fa-chart-pie"></i></span>
         Stats
       </router-link>

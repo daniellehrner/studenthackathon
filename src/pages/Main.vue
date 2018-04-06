@@ -4,8 +4,7 @@
             v-for="(question, index) in questions"
             v-show="index === questionIndex"
             :key="question.question"
-            :question="question.question"
-            :answers="question.answers"
+            :question="question"
             @answer="answer"
     />
   </article>
@@ -19,15 +18,20 @@ export default {
   name: 'Main',
   components: { Card },
   computed: {
-    ...mapGetters(['questions'])
+    ...mapGetters(['questions']),
+    done () {
+      return this.questionIndex >= this.questions.length
+    }
   },
   methods: {
     nextQuestion () {
       this.questionIndex++
+
+      if (this.done) {
+        this.$router.push({ name: 'Stats' })
+      }
     },
     answer (answer) {
-      console.log('main', answer)
-
       this.$store.commit('answer', {
         questionIndex: this.questionIndex,
         answer

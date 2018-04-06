@@ -23,7 +23,7 @@ export default {
 
         transition: background-color 250ms;
 
-        &:hover {
+        &.answered, &:hover {
             background: darken(#46A379, 20%);
         }
     }

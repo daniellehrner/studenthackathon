@@ -1,12 +1,13 @@
 <template>
     <section class="card">
-        <h1 class="title">{{ question }}</h1>
+        <h1 class="title">{{ question.question }}</h1>
 
         <div class="answers">
             <answer-button
-                    v-for="(answer, index) in answers"
+                    v-for="(answer, index) in question.answers"
                     @click.native="$emit('answer', index)"
                     :key="answer.text"
+                    :class="{ answered: question.answer === index }"
             >
                 {{ answer.text }}
             </answer-button>
@@ -20,7 +21,7 @@ export default {
   components: {
     'AnswerButton': Button
   },
-  props: ['question', 'answers']
+  props: ['question']
 }
 </script>
 <style scoped lang="scss">
