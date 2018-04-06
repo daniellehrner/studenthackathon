@@ -28,7 +28,7 @@ export default {
     .card {
         border: 1px solid #979797;
         border-radius: 2px 2px 0 0 ;
-        width: 500px;
+        width: 800px;
         padding: 30px;
     }
 

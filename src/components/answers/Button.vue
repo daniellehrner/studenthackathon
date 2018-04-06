@@ -12,12 +12,12 @@ export default {
         align-items: center;
         justify-content: center;
         border-radius: 2px;
+        text-align: center;
 
-        padding: 10px;
+        padding: 15px;
         background: #46A379;
         color: white;
         cursor: pointer;
-        text-transform: uppercase;
         letter-spacing: 2px;
         font-weight: 100;
 
