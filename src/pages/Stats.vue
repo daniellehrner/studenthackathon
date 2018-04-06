@@ -1,14 +1,23 @@
 <template>
-    <section class="stats">
-        <h1 class="title">Your (not so awesome) score</h1>
+    <section class="statistics">
+        <h1 class="title">
+            Your
+            <template v-if="score < 300">(not so awesome)</template>
+            score</h1>
 
-        <div class="stat">
-            <label class="label">Correct</label>
-            <div class="score good">{{ numCorrectAnswers }}</div>
-        </div>
-        <div class="stat">
-            <label class="label">Incorrect</label>
-            <div class="score bad">{{ numIncorrectAnswers }}</div>
+        <div class="stats">
+            <div class="stat">
+                <label class="label">Correct</label>
+                <div class="score good">{{ numCorrectAnswers }}</div>
+            </div>
+            <div class="stat">
+                <label class="label">Incorrect</label>
+                <div class="score bad">{{ numIncorrectAnswers }}</div>
+            </div>
+            <div class="stat">
+                <label class="label">Score</label>
+                <div class="score">{{ score }}</div>
+            </div>
         </div>
     </section>
 </template>
@@ -18,7 +27,21 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Stats',
   computed: {
-    ...mapGetters(['numCorrectAnswers', 'numIncorrectAnswers'])
+    ...mapGetters(['numCorrectAnswers', 'numIncorrectAnswers', 'questions']),
+    score () {
+      return this.questions.reduce((acc, question) => {
+        if (!this.isAnswerCorrect(question)) {
+          return acc
+        }
+
+        return acc + (30 - question.answer.time) * 10
+      }, 0)
+    }
+  },
+  methods: {
+    isAnswerCorrect (question) {
+      return question.answers[question.answer.index].correct
+    }
   }
 }
 </script>
@@ -29,10 +52,18 @@ export default {
         margin-bottom: 50px;
     }
 
-    .stats {
+    .statistics {
         margin: 100px auto 0 auto;
         width: 50%;
         height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stats {
+        width: 300px;
     }
 
     .stat {

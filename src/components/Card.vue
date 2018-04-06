@@ -27,9 +27,8 @@ export default {
 <style scoped lang="scss">
     .card {
         border: 1px solid #979797;
-        border-radius: 2px;
+        border-radius: 2px 2px 0 0 ;
         width: 500px;
-        margin: auto;
         padding: 30px;
     }
 

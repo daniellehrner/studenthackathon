@@ -1,22 +1,31 @@
 <template>
   <article class="cards">
-    <card
-            v-for="(question, index) in questions"
-            v-show="index === questionIndex"
-            :key="question.question"
-            :question="question"
-            @answer="answer"
-    />
+    <div class="card-wrapper">
+      <card
+              v-for="(question, index) in questions"
+              v-show="index === questionIndex"
+              :key="question.question"
+              :question="question"
+              @answer="answer"
+      />
+      <timer ref="timer" @tick="updateTime" />
+    </div>
   </article>
 </template>
 
 <script>
 import Card from '@/components/Card'
+import Timer from '@/components/Timer'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'Main',
-  components: { Card },
+  data () {
+    return {
+      currentTime: 0
+    }
+  },
+  components: { Card, Timer },
   computed: {
     ...mapGetters(['questions']),
     done () {
@@ -24,8 +33,12 @@ export default {
     }
   },
   methods: {
+    updateTime (time) {
+      this.currentTime = time
+    },
     nextQuestion () {
       this.questionIndex++
+      this.$refs.timer.reset()
 
       if (this.done) {
         this.$router.push({ name: 'Stats' })
@@ -34,7 +47,8 @@ export default {
     answer (answer) {
       this.$store.commit('answer', {
         questionIndex: this.questionIndex,
-        answer
+        index: answer,
+        time: this.currentTime
       })
 
       this.nextQuestion()
@@ -52,5 +66,9 @@ export default {
   .cards {
     display: flex;
     height: 100%;
+  }
+
+  .card-wrapper {
+    margin: auto;
   }
 </style>
