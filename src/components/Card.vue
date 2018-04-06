@@ -15,7 +15,7 @@
     </section>
 </template>
 <script>
-import Button from '@/components/answers/Button'
+import Button from './answers/Button'
 export default {
   name: 'Card',
   components: {

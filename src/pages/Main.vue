@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Card from '@/components/Card'
-import Timer from '@/components/Timer'
+import Card from '../components/Card'
+import Timer from '../components/Timer'
 import { mapGetters } from 'vuex'
 
 export default {

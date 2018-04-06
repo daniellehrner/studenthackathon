@@ -1,6 +1,8 @@
 # Hackathon
 
-## Build Setup
+
+
+## Local Build Setup
 
 ``` bash
 # install dependencies
@@ -12,3 +14,9 @@ npm run dev
 # build for production with minification
 npm run build
 ```
+
+## Deployment
+
+To see the SPA you created, you can follow the github pages instructions to set it up: [https://pages.github.com/](https://pages.github.com/)
+
+
