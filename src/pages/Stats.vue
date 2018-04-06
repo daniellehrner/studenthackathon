@@ -2,7 +2,7 @@
     <section class="statistics">
         <h1 class="title">
             Your
-            <template v-if="score < 300">(not so awesome)</template>
+            <template v-if="score < 1650">(not so awesome)</template>
             score</h1>
 
         <div class="stats">
@@ -34,7 +34,13 @@ export default {
           return acc
         }
 
-        return acc + (30 - question.answer.time) * 10
+        /**
+         * TODO: Calculate a score based on the time it took the user to respond to the question
+         *
+         * time -> question.answer.time
+         * max time -> 30s
+         */
+        return 0
       }, 0)
     }
   },
