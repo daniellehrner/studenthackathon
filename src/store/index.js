@@ -161,7 +161,7 @@ export default new Vuex.Store({
   getters: {
     questions: state => state.questions,
     numCorrectAnswers: state => state.questions.filter(q => q.answer.index != null).filter(q => q.answers[q.answer.index].correct).length,
-    numIncorrectAnswers: state => state.questions.filter(q => q.answer.index != null).filter(q => !q.answers[q.answer.index].correct).length,
+    numIncorrectAnswers: state => state.questions.filter(q => q.answer.index != null).filter(q => !q.answers[q.answer.index].correct).length
   },
   mutations: {
     answer (state, answer) {
