@@ -27,28 +27,29 @@ export default {
   name: 'Stats',
   data () {
     return {
+      /**
+       * Count the number of correct answers. To check if a answer is correct,
+       * you have to use the function this.answerCorrect and give it the current question as a parameter
+       *
+       * You will get the question by calling the function this.getQuestion(i)
+       */
       numberOfCorrectAnswers: 0,
+
+      /**
+       * Count the number of incorrect answers. To check if a answer is correct,
+       * you have to use the function this.answerCorrect and give it the current question as a parameter
+       *
+       * You will get the question by calling the function this.getQuestion(i)
+       */
       numberOfIncorrectAnswers: 0,
+
+      /**
+       * Calculate the percentage of correct answers. To check if a answer is correct,
+       * you have to use the function this.answerCorrect and give it the current question as a parameter
+       *
+       * You will get the question by calling the function this.getQuestion(i)
+       */
       score: 0
-    }
-  },
-  computed: {
-    score () {
-      let score = 0
-
-      let i = 0
-      while (i < this.numberOfQuestions()) {
-        /**
-         * Calculate the percentage of correct answers. To check if a answer is correct,
-         * you have to use the function this.answerCorrect and give it the current question as a parameter
-         *
-         * You will get the question by calling the function this.getQuestion(i)
-         */
-
-        i++
-      }
-
-      return score + ' %'
     }
   },
   methods: {
@@ -68,7 +69,9 @@ export default {
   mount () {
     let i = 0
     while (i < this.numberOfQuestions()) {
-
+      /**
+       * INSERT CODE HERE :)
+       */
 
       i++
     }

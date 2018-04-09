@@ -67,7 +67,7 @@ export default {
        *
        * You will get the question by calling the function this.getQuestion(i)
        */
-      this.questions.push(this.getQuestion(i))
+
       i++
     }
   }
