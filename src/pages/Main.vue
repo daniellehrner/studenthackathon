@@ -22,7 +22,8 @@ export default {
   name: 'Main',
   data () {
     return {
-      currentTime: 0
+      currentTime: 0,
+      questionIndex: 0
     }
   },
   components: { Card, Timer },
@@ -52,11 +53,6 @@ export default {
       })
 
       this.nextQuestion()
-    }
-  },
-  data () {
-    return {
-      questionIndex: 0
     }
   }
 }
