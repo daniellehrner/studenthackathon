@@ -8,38 +8,33 @@
               :question="question"
               @answer="answer"
       />
-      <timer ref="timer" @tick="updateTime" />
     </div>
   </article>
 </template>
 
 <script>
 import Card from '../components/Card'
-import Timer from '../components/Timer'
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'Main',
   data () {
     return {
       currentTime: 0,
-      questionIndex: 0
+      questionIndex: 0,
+      questions: []
     }
   },
-  components: { Card, Timer },
+  components: {
+    Card
+  },
   computed: {
-    ...mapGetters(['questions']),
     done () {
       return this.questionIndex >= this.questions.length
     }
   },
   methods: {
-    updateTime (time) {
-      this.currentTime = time
-    },
     nextQuestion () {
       this.questionIndex++
-      this.$refs.timer.reset()
 
       if (this.done) {
         this.$router.push({ name: 'Stats' })
@@ -48,11 +43,32 @@ export default {
     answer (answer) {
       this.$store.commit('answer', {
         questionIndex: this.questionIndex,
-        index: answer,
-        time: this.currentTime
+        index: answer
       })
 
       this.nextQuestion()
+    },
+    numberOfQuestions () {
+      return this.getQuestions().length
+    },
+    getQuestions () {
+      return this.$store.getters.questions
+    },
+    getQuestion (index) {
+      return this.getQuestions()[index]
+    }
+  },
+  mounted () {
+    let i = 0
+    while (i < this.numberOfQuestions()) {
+      /**
+       * To show the questions you have to add them the ARRAY this.questions
+       * To find out how to do that, search on the internet how to add elements to an array in JavaScript
+       *
+       * You will get the question by calling the function this.getQuestion(i)
+       */
+      this.questions.push(this.getQuestion(i))
+      i++
     }
   }
 }

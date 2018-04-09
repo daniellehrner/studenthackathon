@@ -8,45 +8,69 @@
         <div class="stats">
             <div class="stat">
                 <label class="label">Correct</label>
-                <div class="score good">{{ numCorrectAnswers }}</div>
+                <div class="score good">{{ numberOfCorrectAnswers }}</div>
             </div>
             <div class="stat">
                 <label class="label">Incorrect</label>
-                <div class="score bad">{{ numIncorrectAnswers }}</div>
+                <div class="score bad">{{ numberOfIncorrectAnswers }}</div>
             </div>
             <div class="stat">
                 <label class="label">Score</label>
-                <div class="score">{{ score }}</div>
+                <div class="score">{{ score }} %</div>
             </div>
         </div>
     </section>
 </template>
 <script>
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'Stats',
+  data () {
+    return {
+      numberOfCorrectAnswers: 0,
+      numberOfIncorrectAnswers: 0,
+      score: 0
+    }
+  },
   computed: {
-    ...mapGetters(['numCorrectAnswers', 'numIncorrectAnswers', 'questions']),
     score () {
-      return this.questions.reduce((acc, question) => {
-        if (!this.isAnswerCorrect(question)) {
-          return acc
-        }
+      let score = 0
 
+      let i = 0
+      while (i < this.numberOfQuestions()) {
         /**
-         * TODO: Calculate a score based on the time it took the user to respond to the question
+         * Calculate the percentage of correct answers. To check if a answer is correct,
+         * you have to use the function this.answerCorrect and give it the current question as a parameter
          *
-         * time -> question.answer.time
-         * max time -> 30s
+         * You will get the question by calling the function this.getQuestion(i)
          */
-        return 0
-      }, 0)
+
+        i++
+      }
+
+      return score + ' %'
     }
   },
   methods: {
+    numberOfQuestions () {
+      return this.getQuestions().length
+    },
+    getQuestions () {
+      return this.$store.getters.questions
+    },
+    getQuestion (index) {
+      return this.getQuestions()[index]
+    },
     isAnswerCorrect (question) {
       return question.answers[question.answer.index].correct
+    }
+  },
+  mount () {
+    let i = 0
+    while (i < this.numberOfQuestions()) {
+
+
+      i++
     }
   }
 }

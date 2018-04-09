@@ -16,8 +16,7 @@ export default new Vuex.Store({
           { text: '<script>', correct: true }
         ],
         answer: {
-          index: null,
-          time: null
+          index: null
         }
       },
       {
