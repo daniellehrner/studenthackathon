@@ -66,7 +66,7 @@ export default {
       return question.answers[question.answer.index].correct
     }
   },
-  mount () {
+  mounted () {
     let i = 0
     while (i < this.numberOfQuestions()) {
       /**
